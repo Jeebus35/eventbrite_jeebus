@@ -8,6 +8,10 @@
 
 require 'faker'
 
+
+User.destroy_all
+Event.destroy_all
+Attendance.destroy_all
 count = 0
 10.times do
     count += 1
@@ -15,5 +19,7 @@ count = 0
     b = Faker::Name.last_name
     User.create(first_name: a, last_name: b, email: a.downcase + b.downcase + "@yopmail.com")
 end
-
-puts "SEED LOADED"
+10.times do
+Event.create!(start_date: Faker::Date.forward(days: 360), duration: 60, description: Faker::ChuckNorris.fact, title: Faker::Educator.course_name, price: Faker::Number.between(from: 1, to: 800), location: Faker::Address.city)
+end
+puts " Et voilà un petit seed de fait cool!"
